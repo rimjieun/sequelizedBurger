@@ -5,6 +5,10 @@ var router = express.Router();
 var db = require("../models");
 
 router.get("/", function(req, res) {
+  res.render("index");
+});
+
+router.get("/burgers", function(req, res) {
 
   db.Burger.findAll()
     .then(function(dbBurger) {
@@ -12,12 +16,12 @@ router.get("/", function(req, res) {
         burgers: dbBurger
       };
       console.log(hbsObject);
-      res.render("index", hbsObject);
+      res.render("burgers", hbsObject);
     });
 
 });
 
-router.post("/", function(req, res) {
+router.post("/burgers", function(req, res) {
 
   db.Burger.create({
     burger_name: req.body.burger_name
@@ -28,7 +32,7 @@ router.post("/", function(req, res) {
 
 });
 
-router.put("/:id", function(req, res) {
+router.put("/burgers/:id", function(req, res) {
 
   console.log(req.body);
 
