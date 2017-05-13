@@ -1,0 +1,1 @@
+CREATE DATABASE burgers_seq_db;

@@ -8,7 +8,16 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-router.get("/burgers", function(req, res) {
+router.post("/", function(req, res) {
+  db.Customer.create({
+    customer_name: req.body.customer_name
+  }).then(function(dbCustomer) {
+    console.log(req.body.customer_name);
+    res.redirect("/burger-time");
+  });
+});
+
+router.get("/burger-time", function(req, res) {
 
   db.Burger.findAll()
     .then(function(dbBurger) {
@@ -21,28 +30,27 @@ router.get("/burgers", function(req, res) {
 
 });
 
-router.post("/burgers", function(req, res) {
+router.post("/burger-time", function(req, res) {
 
   db.Burger.create({
     burger_name: req.body.burger_name
   }).then(function(dbBurger) {
-    res.redirect("/");
-    console.log(req.body.burger_name);
+    res.redirect("/burger-time");
   });
 
 });
 
-router.put("/burgers/:id", function(req, res) {
+router.put("/burger-time/:id", function(req, res) {
 
   console.log(req.body);
 
-  db.Burger.update(req.body,
+  db.Burger.update(req.body.devoured,
   {
     where: {
       id: req.params.id
     }
   }).then(function(dbBurger) {
-    res.redirect("/");
+    res.redirect("/burger-time");
   });
 
 });

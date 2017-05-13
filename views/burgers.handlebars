@@ -24,7 +24,7 @@
             <img src="assets/img/burger.png" class="icon" alt="burger" width="50px">
             {{this.burger_name}}
 
-            <form class="ordered-burger-form" action="/{{this.id}}?_method=PUT" method="POST">
+            <form class="ordered-burger-form" action="/burger-time/{{this.id}}?_method=PUT" method="POST">
               <input type="hidden" name="devoured" value="true">
               <button type="submit">Devour it!</button>
             </form>
@@ -49,7 +49,7 @@
 </div>
 
 <div class="bottom-div">
-  <form action="/" method="POST">
+  <form action="/burger-time" method="POST">
     <div class="form">
       <label for="burger">Burger:</label>
       <input type="text" id="burger" name="burger_name">
