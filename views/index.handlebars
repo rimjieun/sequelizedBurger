@@ -1,9 +1,18 @@
 <div class="top-div">
 
-  <img src="assets/img/chef.png" id="burger-chef" alt="burger-chef" width="150px">
+  <img src="assets/img/chef.png" id="cook-icon" alt="cook" width="150px">
 
-  <h2>What burger would you like?</h2>
+  <h1>What burger would you like?</h1>
 
+</div>
+
+<div class="title-div">
+  <div class="left-div">
+    <h2>Ordered Burgers</h2>
+  </div>
+  <div class="right-div">
+    <h2>Devoured Burgers</h2>
+  </div>
 </div>
 
 <div class="middle-div">
@@ -12,9 +21,10 @@
       {{#each burgers}}
         {{#unless this.devoured}}
           <li>
+            <img src="assets/img/burger.png" class="icon" alt="burger" width="50px">
             {{this.burger_name}}
 
-            <form action="/{{this.id}}?_method=PUT" method="POST">
+            <form class="ordered-burger-form" action="/{{this.id}}?_method=PUT" method="POST">
               <input type="hidden" name="devoured" value="true">
               <button type="submit">Devour it!</button>
             </form>
@@ -29,12 +39,8 @@
       {{#each burgers}}
         {{#if this.devoured}}
           <li>
+            <img src="assets/img/plate.png" class="icon" alt="plate" width="50px">
             {{this.burger_name}}
-
-            <form action="/{{this.id}}?_method=PUT" method="POST">
-              <input type="hidden" name="devoured" value="false">
-              <button type="submit">Clean</button>
-            </form>
           </li>
         {{/if}}
       {{/each}}

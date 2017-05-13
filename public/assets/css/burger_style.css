@@ -6,28 +6,55 @@ body {
   box-sizing: border-box;
 }
 
+h2 {
+  text-align: center;
+}
+
 .top-div {
   margin-top: 50px;
   text-align: center;
 }
 
-#burger-chef {
+#cook-icon {
   display: block;
   margin: 0 auto;
 }
 
-.middle-div {
+.title-div, .middle-div {
   width: 50%;
-  margin: 0 auto 3vw;
+  margin: 0 auto;
+}
+
+.middle-div {
+  margin-bottom: 3vw;
 }
 
 .left-div,
 .right-div {
   display: inline-block;
   width: 49%;
+  position: relative;
 }
 
 .form {
   width: 20vw;
   margin: 0 auto;
+}
+
+li {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+
+.icon {
+  vertical-align: middle;
+  margin-right: 0.7vw;
+}
+
+.ordered-burger-form {
+  display: inline;
+  position: absolute;
+  right: 0;
+  margin-top: 0.8vw;
 }
