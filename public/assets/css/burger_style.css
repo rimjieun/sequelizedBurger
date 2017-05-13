@@ -1,0 +1,33 @@
+body {
+  background-color: rgb(238,195,2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.top-div {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#burger-chef {
+  display: block;
+  margin: 0 auto;
+}
+
+.middle-div {
+  width: 50%;
+  margin: 0 auto 3vw;
+}
+
+.left-div,
+.right-div {
+  display: inline-block;
+  width: 49%;
+}
+
+.form {
+  width: 20vw;
+  margin: 0 auto;
+}
