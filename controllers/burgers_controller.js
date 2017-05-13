@@ -6,18 +6,14 @@ var db = require("../models");
 
 router.get("/", function(req, res) {
 
-  db.Burger.findAll({})
+  db.Burger.findAll()
     .then(function(dbBurger) {
-      res.render("index", dbBurger);
+      var hbsObject = {
+        burgers: dbBurger
+      };
+      console.log(hbsObject);
+      res.render("index", hbsObject);
     });
-
-  // burger.selectAll(function(data) {
-  //   var hbsObject = {
-  //     burgers: data
-  //   };
-  //   console.log(hbsObject);
-  //   res.render("index", hbsObject);
-  // });
 
 });
 
@@ -30,37 +26,21 @@ router.post("/", function(req, res) {
     console.log(req.body.burger_name);
   });
 
-  // burger.insertOne(["burger_name"], [req.body.burger_name], function() {
-  //   res.redirect("/");
-  //   console.log(req.body.burger_name);
-  // });
-
 });
 
 router.put("/:id", function(req, res) {
 
+  console.log(req.body);
+
   db.Burger.update(req.body,
   {
     where: {
-      id: req.body.id
+      id: req.params.id
     }
   }).then(function(dbBurger) {
     res.redirect("/");
   });
 
-
-  // var condition = "id = " + req.params.id;
-
-  // console.log("condition", condition);
-
-  // burger.updateOne(
-  // {
-  //   devoured: req.body.devoured
-  // },
-  // condition, function() {
-  //   res.redirect("/");
-  // });
-  
 });
 
 module.exports = router;
