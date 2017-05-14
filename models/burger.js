@@ -15,7 +15,11 @@ module.exports = function(sequelize, DataTypes) {
   {
     classMethods: {
       associate: function(models) {
-        Burger.belongsTo(models.Customer);
+        Burger.belongsTo(models.Customer, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
       }
     }
   });

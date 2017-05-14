@@ -19,8 +19,9 @@ router.post("/", function(req, res) {
 
 router.get("/burger-time", function(req, res) {
 
-  db.Burger.findAll()
-    .then(function(dbBurger) {
+  db.Burger.findAll({
+    include: [db.Customer]
+  }).then(function(dbBurger) {
       var hbsObject = {
         burgers: dbBurger
       };
@@ -32,8 +33,11 @@ router.get("/burger-time", function(req, res) {
 
 router.post("/burger-time", function(req, res) {
 
+  console.dir(req.body);
+
   db.Burger.create({
-    burger_name: req.body.burger_name
+    burger_name: req.body.burger_name,
+    CustomerID: db.Customer.id
   }).then(function(dbBurger) {
     res.redirect("/burger-time");
   });
