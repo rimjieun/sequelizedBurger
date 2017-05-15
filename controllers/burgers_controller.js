@@ -9,44 +9,41 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  db.Customer.create({
-    customer_name: req.body.customer_name
-  }).then(function(dbCustomer) {
-    console.log(req.body.customer_name);
+  db.Customer.create(req.body).then(function(dbCustomer) {
     res.redirect("/burger-time");
   });
 });
 
 router.get("/burger-time", function(req, res) {
 
+  console.log(req.query);
+  var query = {};
+  // if (req.query.customer_id) {
+  //   query.CustomerId = req.query.customer_id;
+  // }
+  query.CustomerId = 1;
+
   db.Burger.findAll({
+    where: query,
     include: [db.Customer]
   }).then(function(dbBurger) {
       var hbsObject = {
         burgers: dbBurger
       };
-      console.log(hbsObject);
+      console.log("THIS IS HBSOBJECT: " + hbsObject);
       res.render("burgers", hbsObject);
     });
-
 });
 
 router.post("/burger-time", function(req, res) {
 
-  console.dir(req.body);
-
-  db.Burger.create({
-    burger_name: req.body.burger_name,
-    CustomerID: db.Customer.id
-  }).then(function(dbBurger) {
+  db.Burger.create(req.body).then(function(dbBurger) {
     res.redirect("/burger-time");
   });
 
 });
 
 router.put("/burger-time/:id", function(req, res) {
-
-  console.log(req.body);
 
   db.Burger.update(req.body,
   {
